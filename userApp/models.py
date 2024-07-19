@@ -1,8 +1,6 @@
-# users/models.py
 '''
-    This class is the one that connects to database to create table,
-    it means that the name of a class available here will be the same name of table name in the database
-
+    This class is the one that connects to the database to create tables.
+    The name of a class defined here will be the same name as the table name in the database.
 '''
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
@@ -33,11 +31,11 @@ class CustomUserManager(BaseUserManager):
 
     def create_superuser(self, first_name, last_name, username, email, phone, password=None):
         user = self.create_user(
-            first_name,
-            last_name,
-            email,
-            phone,
-            username,
+            first_name=first_name,
+            last_name=last_name,
+            username=username,
+            email=email,
+            phone=phone,
             password=password
         )
         user.is_admin = True
@@ -47,9 +45,10 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     ROLE_CHOICES = (
         ('user', 'User'),
-        ('unit user', 'Unit User'),
-        ('head of department', 'Head of Department'),
-        ('head of division', 'Head of Division'),
+        ('admin', 'Admin'),
+        ('unituser', 'UnitUser'),
+        ('head of department', 'HeadofDepartment'),
+        ('head of division', 'HeadofDivision'),
     )
 
     first_name = models.CharField(max_length=30)

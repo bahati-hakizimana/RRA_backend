@@ -1,33 +1,15 @@
-# RRA_report_backend/settings.py
-
-# Add the following imports at the top of the file
-from datetime import timedelta
-from pathlib import Path
-from django.core.mail import send_mail
-from pathlib import Path
 import dj_database_url
-import environ
+from pathlib import Path
+from datetime import timedelta
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-env = environ.Env()
-environ.Env.read_env()
+SECRET_KEY = 'r^2y10j(6b&kqp4e=&f8!&7wl)!uvf2mh!$mwc@o_voj77m2%('
 
+DEBUG = True
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n2&6_j(6s!s)=&o)dq_+4x6)l5_uz9m8j95-)l63@p^k=$5bu$'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['*']
-
-# Application definition
+ALLOWED_HOSTS = default=['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,7 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # Add CORS middleware
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'RRA_report_backend.urls'
@@ -75,23 +57,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'RRA_report_backend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'RRA_DB',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'rra_report_db',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -108,10 +84,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -120,58 +92,39 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = '/static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configure email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'princemugabe567@gmail.com'
-EMAIL_HOST_PASSWORD = 'kfgm wwvi ujys bokt'  # Your email password
-EMAIL_USE_TLS = True 
+EMAIL_HOST_PASSWORD = 'mzij rnht gyvb xzkk'
+DEFAULT_FROM_EMAIL = 'no-reply'
 
-# Configure Django REST framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
 
-# Configure Simple JWT settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Access token expiration time
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Refresh token expiration time
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-# Configure CORS settings
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Example: Allow requests from a React app running on localhost
+    'http://localhost:3000',
     'http://localhost:5000',
     'http://localhost:5500',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 
-
-CORS_ALLOW_ALL_ORGINS = True
-
-
-# Configure email settings (replace these with your actual email settings)
-DEFAULT_FROM_EMAIL = 'no-reply'
 AUTH_USER_MODEL = 'userApp.CustomUser'
 
-
-
-# settings.py
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

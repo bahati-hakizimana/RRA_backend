@@ -3,7 +3,7 @@ from .views import (
     index, SignupView, LoginView, UserListView, UserDetailView,
     UserUpdateView, UserDeleteView, UserByUsernameView, UserByEmailView,
     UserByPhoneView, UserByFirstNameView, UserByLastNameView, PasswordResetView,
-    UpdateUsernameView, UserCountView, UserTrendView, UserDownloadPDFView, UserDownloadExcelView
+    UpdateUsernameView, UserCountView, UserTrendView, UserDownloadPDFView, UserDownloadExcelView, LogoutView
 )
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('user-trends/', UserTrendView.as_view(), name='user-trends'),
     path('users/download/pdf/', UserDownloadPDFView.as_view(), name='user-download-pdf'),
     path('users/download/excel/', UserDownloadExcelView.as_view(), name='user-download-excel'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]

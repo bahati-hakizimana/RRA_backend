@@ -18,11 +18,11 @@ from .views import (
 
 urlpatterns = [
     path('create/', ReportCreateView.as_view(), name='report-create'),
-    path('<int:pk>/update/', ReportUpdateView.as_view(), name='report-update'),
-    path('<int:pk>/delete/', ReportDeleteView.as_view(), name='report-delete'),
+    path('update/<int:pk>/', ReportUpdateView.as_view(), name='report-update'),
+    path('delete/<int:pk>/', ReportDeleteView.as_view(), name='report-delete'),
     path('reports/', ReportListView.as_view(), name='report-list'),
     path('by_level/<str:level>/', ReportByLevelView.as_view(), name='report-by-level'),
-    path('<int:pk>/', ReportByIdView.as_view(), name='report-detail'),
+    path('report/<int:pk>/', ReportByIdView.as_view(), name='report-detail'),
     path('by_title/<str:title>/', ReportByTitleView.as_view(), name='report-by-title'),
     path('by_user/<str:user>/', ReportByUserView.as_view(), name='report-by-user'),
     path('count/', ReportCountView.as_view(), name='report-count'),
